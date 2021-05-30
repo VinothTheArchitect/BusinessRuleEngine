@@ -11,6 +11,8 @@ namespace EventProcessor.Logic.Membership
     {
         private readonly IEmailSender emailSender;
         private readonly ICustomerManager customerManager;
+        private const string ACTIVATE_MEMBERSHIP = "Memership Activated";
+        private const string UPGRADE_MEMBERSHIP = "Memership Upgraded";
 
         public MembershipManager(IEmailSender emailSender,ICustomerManager customerManager)
         {
@@ -20,13 +22,13 @@ namespace EventProcessor.Logic.Membership
         public async Task Activate(MembershipInfo membershipInfo)
         {
             //Activation logic goes here
-           await  emailSender.Send(new MailMessage() { From = "", To = "", Message = "" });
+           await  emailSender.Send(membershipInfo, ACTIVATE_MEMBERSHIP);
         }
 
         public async Task Upgrade(MembershipInfo membershipInfo)
         { 
             //upgrade logic goes here
-            await emailSender.Send(new MailMessage() { From = "", To = "", Message = "" });
+            await emailSender.Send(membershipInfo, ACTIVATE_MEMBERSHIP);
         }
     }
 }
